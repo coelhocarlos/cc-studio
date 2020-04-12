@@ -73,9 +73,7 @@ fi
 tar -cvzf "$ARQUIVO" $DIR_ARQUIVAR;
 #Envia o Arquivo para o Mega.
 megaput "$ARQUIVO"
-
 if [ ! -d $ARQUIVO ]; then
-
  echo "BACKUP." $FILENAME $MAILBODY $HOUR | mailx -r $MAILFROM -s $MAILSUBJECT $MAILTO
 fi
 #verifica se os aruivos estao a mais de um dia e deleta
