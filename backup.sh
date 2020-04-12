@@ -39,27 +39,26 @@ echo "..."
 echo "..."
 echo "Aguarde Alguns Instantes para a Finalização"
 
-
 #CONFIGURATIONS
-#mail
-MAILFROM="xxxxxx@xxxx.com";
-MAILTO="xxxxxx@xxxx.com";
-MAILSUBJECT="AVISO";
-MAILBODY="Enviado para o mega as";
 #DATE
 DATA=$(date +'%d-%m-%y');
 #Hour
 HOUR=(date +"%T");
 #Script initiate as
 START=$(date +%s);
+#mail
+MAILFROM="x@x.com";
+MAILTO="x@x.com";
+MAILSUBJECT="Aviso ! Backup enviado para nuvem de arquivos.";
+MAILBODY="Enviado para o mega as ";
 #Directory to save backup
 DIR_BACKUP="/tmp/backup";
 #filename to zip ans send zipped files
-FILENAME="TESTE_ROOT_SCRIPT_";
+FILENAME="SDRIVE_www_clients";
 #Directory to get files
-DIR_ARQUIVAR=" /root/.scripts";
+DIR_ARQUIVAR=" /home/zombie/www/clientes";
 #Time to delete files in directory backup ex 1-30 days
-FILETIMETODELETE="+10"
+FILETIMETODELETE="5"
 
 ARQUIVO="$DIR_BACKUP/$FILENAME$DATA.tar.gz";
 
@@ -73,11 +72,12 @@ fi
 tar -cvzf "$ARQUIVO" $DIR_ARQUIVAR;
 #Envia o Arquivo para o Mega.
 megaput "$ARQUIVO"
+
 if [ ! -d $ARQUIVO ]; then
  echo "BACKUP." $FILENAME $MAILBODY $HOUR | mailx -r $MAILFROM -s $MAILSUBJECT $MAILTO
 fi
 #verifica se os aruivos estao a mais de um dia e deleta
-echo "Removendo os backups, deixando sempre dos ultimos 5 dias"
+echo "Removendo os backups, deixando sempre dos ultimos +$FILETIMETODELETE dias"
 find  $DIR_BACKUP -name "*.gz" -ctime $FILETIMETODELETE -exec rm {} \;
 #find $DIR_DESTINO -type f -mtime $TIME -delete
 
