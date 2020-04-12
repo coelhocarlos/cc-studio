@@ -52,6 +52,8 @@ START=$(date +%s);
 DIR_BACKUP="/tmp/backup";
 FILENAME="TESTE_ROOT_SCRIPT_";
 DIR_ARQUIVAR=" /root/.scripts";
+FROM="servidor@";
+TO="contato@";
 
 ARQUIVO="$DIR_BACKUP/$FILENAME$DATA.tar.gz";
 
@@ -68,7 +70,7 @@ megaput "$ARQUIVO"
 
 if [ ! -d $ARQUIVO ]; then
 
- echo "BACKUP." $FILENAME "Enviado para o mega as $HOUR" | mailx -r servidor@ccstudio.com.br -s AVISO contato@ccstudio.com.br
+ echo "BACKUP." $FILENAME "Enviado para o mega as $HOUR" | mailx -r $FROM -s AVISO $TO
 fi
 #verifica se os aruivos estao a mais de um dia e deleta
 echo "Removendo os backups, deixando sempre dos ultimos 5 dias"
