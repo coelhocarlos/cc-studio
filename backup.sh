@@ -58,8 +58,8 @@ FILETIMETODELETE="5"
 #mail
 MAILFROM="noreply@ccstudio.com.br";
 MAILTO="contato@ccstudio.com.br contato@imobiliariafacility.com.br";
-MAILSUBJECT="BACKUP - $COMPANY !";
-MAILBODY="Notificação de Email -  Processo de envio completado - Arquivo $FILENAME enviado para mega.nz as $HOUR";
+MAILSUBJECT="BACKUP-$COMPANY!";
+MAILBODY="Notificacao de Email -  Processo de envio completado - Arquivo $FILENAME enviado para mega.nz as $HOUR";
 
 ARQUIVO="$DIR_BACKUP/$FILENAME$DATA.tar.gz";
 
