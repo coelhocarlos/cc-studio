@@ -75,7 +75,7 @@ fi
 #Compacta o arquivo e salva na pasta /tmp/backup.
 tar -cvzf "$ARQUIVO" $DIR_ARQUIVAR;
 #Envia o Arquivo para o Mega.
-megaput  "$ARQUIVO" --path=$DIR_MEGA
+megaput  "$ARQUIVO".tar.gz --path=$DIR_MEGA
 
 if [ ! -d $ARQUIVO ]; then
  echo $MAILBODY | mailx -r $MAILFROM -s $MAILSUBJECT $MAILTO
