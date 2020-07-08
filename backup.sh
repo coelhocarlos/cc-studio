@@ -40,7 +40,6 @@ echo "..."
 echo "Aguarde Alguns Instantes para a Finalização"
 
 #CONFIGURATIONS
-COMPANY="Facility"
 #DATE
 DATA=$(date +'%d-%m-%y');
 #Hour
@@ -48,31 +47,35 @@ HOUR=$(date +"%T");
 #Script initiate as
 START=$(date +%s);
 #Directory to save backup
-DIR_BACKUP="/media/facility-backup/Backup_Empresa";
+DIR_BACKUP="/mnt/cloud/bck-ccstudio-server";
 #filename to zip ans send zipped files
-FILENAME="Atendimento_";
+FILENAME="websites_";
 #Directory to get files
-DIR_ARQUIVAR="/media/facility-empresa/atendimento";
+DIR_ARQUIVAR="/var/www/clients";
+#directory to mega folder
+DIR_MEGA="/Root/webserver-backup";
 #Time to delete files in directory backup ex 1-30 days
 FILETIMETODELETE="5"
 #mail
-MAILFROM="noreply@ccstudio.com.br";
-MAILTO="contato@ccstudio.com.br contato@imobiliariafacility.com.br";
-MAILSUBJECT="BACKUP-$COMPANY!";
-MAILBODY="Notificacao de Email -  Processo de envio completado - Arquivo $FILENAME enviado para mega.nz as $HOUR";
+MAILFROM="servidor@ccstudio.com.br";
+MAILTO="contato@ccstudio.com.br";
+MAILSUBJECT="BACKUP_WEBSERVER_CCSTUDIO";
+MAILBODY="Backup de arquivos de $FILENAME enviado para o Mega.nz as $HOUR";
 
 ARQUIVO="$DIR_BACKUP/$FILENAME$DATA.tar.gz";
 
 #verifica se o diretorio exise, se o diretorio não existir cria o diretorio. -d verifica se existe, !-d verifica 
 #se não existe.
+
 if [ ! -d $DIR_BACKUP ]; then
 mkdir $DIR_BACKUP;
+chmod 777 "$DIR_BACKUP"
 fi
 #fim do if;
 #Compacta o arquivo e salva na pasta /tmp/backup.
 tar -cvzf "$ARQUIVO" $DIR_ARQUIVAR;
 #Envia o Arquivo para o Mega.
-megaput "$ARQUIVO"
+megaput  "$ARQUIVO" --path=$DIR_MEGA
 
 if [ ! -d $ARQUIVO ]; then
  echo $MAILBODY | mailx -r $MAILFROM -s $MAILSUBJECT $MAILTO
