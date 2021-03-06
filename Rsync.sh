@@ -2,6 +2,7 @@
 #### Desenvolvido por #########
 #### DATA: 03/06/2021 ############################
 ####EMAIL: cristiancaetano@gmail.com#############
+## rsync -ah -e 'sshpass -p "pass" ssh -p 22 -o StrictHostKeyChecking=no' /srv/backup zerodawn@ip:/srv/storage/facility
 #################################################
 
 #OBS: para funcionar corretamente devera criar um arquivo com o nome 'PASTA' e deixar no mesmo diretorio do script e mudar o caminho da variavel ARQUIVO dentro da funçao @BACKUPPASTAS
